@@ -1,14 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { Grid } from '@mui/material';
 import './App.css'
 
 function App() {
     return (
-        <div>
-            <h1>Bienvenido al Dashboard</h1>
-        </div>
+      <Grid container spacing={5} sx={{justifyContent: 'left', alignItems: 'center' }} >
+
+         {/* Encabezado */}
+         <Grid size={{ xs: 12 , md:12}}>Elemento: Encabezado</Grid>
+
+         {/* Alertas */}
+         <Grid size={{ xs: 12 , md:12}}>Elemento: Alertas</Grid>
+
+         {/* Selector */}
+         <Grid>Elemento: Selector</Grid>
+
+         {/* Indicadores */}
+         <Grid>Elemento: Indicadores</Grid>
+
+         {/* Gráfico */}
+         <Grid sx={{ display: { xs: "none", md: "block"} }}>Elemento: Gráfico</Grid>
+
+         {/* Tabla */}
+         <Grid sx={{ display: { xs: "none", md: "block"} }} >Elemento: Tabla</Grid>
+
+         {/* Información adicional */}
+         <Grid>Elemento: Información adicional</Grid>
+
+      </Grid>
     );
 }
 
