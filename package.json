@@ -2,12 +2,15 @@
   "name": "dashboard",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://ibcg04.github.io/dashboard",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
