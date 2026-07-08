@@ -3,11 +3,14 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { type SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
 
 export default function SelectorUI(){
+   
+   const [cityInput, setCityInput] = useState("");
 
     const handleChange = (event: SelectChangeEvent<string>) => {
-        alert(event.target.value)
+        setCityInput(event.target.value);
     };
 
     return (
@@ -17,8 +20,10 @@ export default function SelectorUI(){
          labelId="city-select-label"
          id="city-simple-select"
          label="Ciudad"
+         value =  {cityInput}
          onChange={handleChange}
-         >
+         >{cityInput && (<p>Informacion del clima en <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>{cityInput}</span></p>)}
+
          <MenuItem disabled><em>Seleccione una ciudad</em></MenuItem>
          <MenuItem value={"guayaquil"}>Guayaquil</MenuItem>
          <MenuItem value={"quito"}>Quito</MenuItem>
