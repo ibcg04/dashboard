@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import HeaderUI from './Typography';
 import AlertUI from './AlertUI';
+import SelectorUI from './SelectorUI';
 
 import './App.css'
 
@@ -20,7 +21,9 @@ function App() {
          </Grid>
 
          {/* Selector */}
-         <Grid>Elemento: Selector</Grid>
+         <Grid >
+            <SelectorUI />
+         </Grid>
 
          {/* Indicadores */}
          <Grid>Elemento: Indicadores</Grid>
