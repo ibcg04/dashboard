@@ -14,7 +14,7 @@ export default function SelectorUI(){
     };
 
     return (
-   <FormControl fullWidth>
+   <FormControl fullWidth sx={{ textAlign: 'left' }}>
       <InputLabel id="city-select-label">Ciudad</InputLabel>
       <Select
          labelId="city-select-label"
@@ -22,8 +22,13 @@ export default function SelectorUI(){
          label="Ciudad"
          value =  {cityInput}
          onChange={handleChange}
-         >{cityInput && (<p>Informacion del clima en <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>{cityInput}</span></p>)}
-
+         sx={{
+            bgcolor: 'var(--panel)',
+            color: 'var(--text-h)',
+            '.MuiOutlinedInput-notchedOutline': { borderColor: 'var(--border)' },
+            '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'var(--accent-border)' },
+         }}
+         >
          <MenuItem disabled><em>Seleccione una ciudad</em></MenuItem>
          <MenuItem value={"guayaquil"}>Guayaquil</MenuItem>
          <MenuItem value={"quito"}>Quito</MenuItem>
@@ -31,7 +36,7 @@ export default function SelectorUI(){
          <MenuItem value={"cuenca"}>Cuenca</MenuItem>
          
       </Select>
-
+      {cityInput && (<p style={{ marginTop: 12, color: 'var(--text)' }}>Informacion del clima en <span style={{ fontWeight: 'bold', textTransform: 'Capitalize', color: 'var(--text-h)' }}>{cityInput}</span></p>)}
    </FormControl>
    )
 }
