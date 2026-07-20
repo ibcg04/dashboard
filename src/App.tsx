@@ -3,13 +3,17 @@ import HeaderUI from './Typography';
 import AlertUI from './AlertUI';
 import SelectorUI from './SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
-import useFetchdata from './hooks/useFetchdata';
+import useFetchData from './hooks/useFetchdata';
+import TableUI from './components/TableUI';
+import ChartUI from './components/ChartUI';
+import { useState } from 'react';
 
 
 import './App.css';
 
 function App() {
-   const data = useFetchdata();
+   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+   const { data, isLoading, error } = useFetchData(selectedOption);
   return (
     <Grid
       container
@@ -40,12 +44,12 @@ function App() {
 
       {/* Selector */}
       <Grid size={{ xs: 12, md: 4 }}>
-        <SelectorUI />
+        <SelectorUI onOptionSelect={setSelectedOption} />
       </Grid>
 
       {/* Indicadores */}
-      <Grid container size={{ xs: 12, md: 9 }} spacing={3}>
-        <Grid size={{ xs: 12, md: 3 }}>
+      <Grid container size={{ xs: 12, md: 8 }} spacing={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
          {data &&
         (<IndicatorUI
             title='Temperatura (2m)'
@@ -53,14 +57,14 @@ function App() {
     }
         </Grid>
 
-        <Grid size={{ xs: 12, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           {data && (<IndicatorUI
             title='Sensación térmica'
             description={ `${data.current.apparent_temperature} ${data.current_units.apparent_temperature}` } />)
           }
             </Grid>
 
-        <Grid size={{ xs: 12, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           {data && (
             <IndicatorUI
               title='Velocidad del viento'
@@ -68,7 +72,7 @@ function App() {
           )}
         </Grid>
 
-        <Grid size={{ xs: 12, md: 3 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           {data && (
             <IndicatorUI
               title='Humedad relativa'
@@ -79,22 +83,9 @@ function App() {
 
       {/* Grafico */}
       <Grid
-        size={{ xs: 12, md: 3 }}
+        size={{ xs: 12 }}
         sx={{
-          display: { xs: 'none', md: 'flex' },
-          alignItems: 'center',
-          color: 'var(--text)',
-        }}
-      >
-        Elemento: Grafico
-      </Grid>
-
-      {/* Tabla */}
-      <Grid
-        size={{ xs: 12, md: 5 }}
-        sx={{
-          display: { xs: 'none', md: 'block' },
-          minHeight: 120,
+          minHeight: 420,
           p: 3,
           borderRadius: 2,
           border: '1px solid',
@@ -104,14 +95,31 @@ function App() {
           textAlign: 'left',
         }}
       >
-        Elemento: Tabla
+        <ChartUI data={data} isLoading={isLoading} error={error} />
+      </Grid>
+
+      {/* Tabla */}
+      <Grid
+        size={{ xs: 12, md: 7 }}
+        sx={{
+          minHeight: 420,
+          p: 3,
+          borderRadius: 2,
+          border: '1px solid',
+          borderColor: 'var(--border)',
+          bgcolor: 'var(--panel)',
+          color: 'var(--text)',
+          textAlign: 'left',
+        }}
+      >
+        <TableUI data={data} isLoading={isLoading} error={error} />
       </Grid>
 
       {/* Informacion adicional */}
       <Grid
-        size={{ xs: 12, md: 7 }}
+        size={{ xs: 12, md: 5 }}
         sx={{
-          minHeight: 120,
+          minHeight: 420,
           p: 3,
           borderRadius: 2,
           border: '1px solid',
