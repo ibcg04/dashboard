@@ -38,20 +38,33 @@ export default function ChartUI({ data, isLoading, error }: ChartUIProps) {
    const labels = data.hourly.time.slice(0, 24).map(formatHour);
    const temperatures = data.hourly.temperature_2m.slice(0, 24);
    const apparentTemperatures = data.hourly.apparent_temperature.slice(0, 24);
+   const relativeHumidity = data.hourly.relative_humidity_2m.slice(0, 24);
+   const windSpeed = data.hourly.wind_speed_10m.slice(0, 24);
 
    return (
       <Box sx={{ width: '100%' }}>
+         <Typography variant="overline" component="p" sx={{ color: 'var(--muted)', fontWeight: 700 }}>
+            Proximas 24 horas
+         </Typography>
          <Typography variant="h5" component="div" sx={{ color: 'var(--text-h)', mb: 2 }}>
             Pronostico por hora
          </Typography>
          <LineChart
             height={340}
-            margin={{ top: 28, right: 28, bottom: 54, left: 48 }}
+            margin={{ top: 28, right: 72, bottom: 54, left: 48 }}
             series={[
                { data: temperatures, label: `Temperatura (${data.hourly_units.temperature_2m})` },
                {
                   data: apparentTemperatures,
                   label: `Sensacion (${data.hourly_units.apparent_temperature})`,
+               },
+               {
+                  data: relativeHumidity,
+                  label: `Humedad (${data.hourly_units.relative_humidity_2m})`,
+               },
+               {
+                  data: windSpeed,
+                  label: `Viento (${data.hourly_units.wind_speed_10m})`,
                },
             ]}
             xAxis={[{ scaleType: 'point', data: labels }]}

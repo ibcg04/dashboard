@@ -29,8 +29,11 @@ export default function SelectorUI({ onOptionSelect }: SelectorProps) {
             sx={{
                bgcolor: 'var(--panel)',
                color: 'var(--text-h)',
+               borderRadius: 2,
+               fontWeight: 700,
                '.MuiOutlinedInput-notchedOutline': { borderColor: 'var(--border)' },
                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'var(--accent-border)' },
+               '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'var(--accent)' },
             }}
          >
             <MenuItem disabled value="">
@@ -42,7 +45,7 @@ export default function SelectorUI({ onOptionSelect }: SelectorProps) {
             <MenuItem value="Cuenca">Cuenca</MenuItem>
          </Select>
          {cityInput && (
-            <p style={{ marginTop: 12, color: 'var(--text)' }}>
+            <p style={{ marginTop: 12, color: 'var(--text)', fontSize: 15 }}>
                Informacion del clima en{' '}
                <span style={{ fontWeight: 'bold', color: 'var(--text-h)' }}>{cityInput}</span>
             </p>
