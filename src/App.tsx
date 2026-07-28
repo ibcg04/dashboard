@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
    const [selectedOption, setSelectedOption] = useState<string | null>(null);
-   const { data, isLoading, error } = useFetchData(selectedOption);
+   const { data, loading, error } = useFetchData(selectedOption);
   return (
     <Grid
       container
@@ -50,33 +50,44 @@ function App() {
       {/* Indicadores */}
       <Grid container size={{ xs: 12, md: 8 }} spacing={3}>
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-         {data &&
-        (<IndicatorUI
+         {(<IndicatorUI
             title='Temperatura (2m)'
-            description={ `${data.current.temperature_2m} ${data.current_units.temperature_2m}` } />)
+            description={ 
+                loading ? 'Cargando...' : 
+                error ? `Error: ${error}` :  
+                data ? `${data.current.temperature_2m} ${data.current_units.temperature_2m}` : 'No hay datos disponibles' } />)
     }
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          {data && (<IndicatorUI
+          {(<IndicatorUI
             title='Sensación térmica'
-            description={ `${data.current.apparent_temperature} ${data.current_units.apparent_temperature}` } />)
+            description={             
+              loading ? 'Cargando...' : 
+              error ? `Error: ${error}` :              
+              data ? `${data.current.apparent_temperature} ${data.current_units.apparent_temperature}` : 'No hay datos disponibles' } />)
           }
             </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          {data && (
+          {(
             <IndicatorUI
               title='Velocidad del viento'
-              description={ `${data.current.wind_speed_10m} ${data.current_units.wind_speed_10m}` } />
+              description={ 
+                loading ? 'Cargando...' : 
+                error ? `Error: ${error}` :
+                data ? `${data.current.wind_speed_10m} ${data.current_units.wind_speed_10m}` : 'No hay datos disponibles' } />
           )}
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-          {data && (
+          {(
             <IndicatorUI
               title='Humedad relativa'
-              description={ `${data.current.relative_humidity_2m} ${data.current_units.relative_humidity_2m}` } />
+              description={ 
+                loading ? 'Cargando...' : 
+                error ? `Error: ${error}` :
+                data ? `${data.current.relative_humidity_2m} ${data.current_units.relative_humidity_2m}` : 'No hay datos disponibles' } />
           )}
         </Grid>
       </Grid>
@@ -95,7 +106,7 @@ function App() {
           textAlign: 'left',
         }}
       >
-        <ChartUI data={data} isLoading={isLoading} error={error} />
+        <ChartUI data={data} isLoading={loading} error={error} />
       </Grid>
 
       {/* Tabla */}
@@ -112,7 +123,7 @@ function App() {
           textAlign: 'left',
         }}
       >
-        <TableUI data={data} isLoading={isLoading} error={error} />
+        <TableUI data={data} isLoading={loading} error={error} />
       </Grid>
 
       {/* Informacion adicional */}

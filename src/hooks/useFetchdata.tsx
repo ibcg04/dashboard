@@ -3,7 +3,7 @@ import type { OpenMeteoResponse } from '../types/DashboardTypes';
 
 interface FetchState {
   data: OpenMeteoResponse | undefined;
-  isLoading: boolean;
+  loading: boolean;
   error: string | undefined;
 }
 
@@ -16,7 +16,7 @@ const CITY_COORDS: Record<string, { latitude: number; longitude: number }> = {
 
 export default function useFetchData(selectedOption: string | null): FetchState {
   const [data, setData] = useState<OpenMeteoResponse | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function useFetchData(selectedOption: string | null): FetchState 
 
     const fetchData = async () => {
       try {
-        setIsLoading(true);
+        setLoading(true);
         setError(undefined);
 
         const response = await fetch(url, { signal: controller.signal });
@@ -48,7 +48,7 @@ export default function useFetchData(selectedOption: string | null): FetchState 
             : 'Ocurrio un error inesperado al cargar los datos.',
         );
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
     };
 
@@ -57,5 +57,5 @@ export default function useFetchData(selectedOption: string | null): FetchState 
     return () => controller.abort();
   }, [selectedOption]);
 
-  return { data, isLoading, error };
+  return { data, loading, error };
 }
