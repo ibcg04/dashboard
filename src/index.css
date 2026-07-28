@@ -1,23 +1,26 @@
 :root {
-  --text: #64748b;
-  --text-h: #0f172a;
-  --bg: #f6f8fb;
+  --text: #526173;
+  --muted: #748195;
+  --text-h: #102033;
+  --bg: #eef5f7;
   --panel: #ffffff;
-  --border: #e5e4e7;
+  --border: #d9e4e8;
+  --table-header-bg: #e6f3f6;
+  --table-header-text: #102033;
   --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
+  --accent: #0891b2;
+  --accent-bg: rgba(8, 145, 178, 0.12);
+  --accent-border: rgba(8, 145, 178, 0.45);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(15, 23, 42, 0.08) 0 18px 40px -22px, rgba(15, 23, 42, 0.06) 0 8px 20px -16px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  letter-spacing: 0;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
@@ -33,18 +36,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --panel: #1f2028;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
+    --text: #a7b4bf;
+    --muted: #8f9ca8;
+    --text-h: #eef7fb;
+    --bg: #101820;
+    --panel: #17232c;
+    --border: #273946;
+    --table-header-bg: #223441;
+    --table-header-text: #eef7fb;
+    --code-bg: #17232c;
+    --accent: #38bdf8;
+    --accent-bg: rgba(56, 189, 248, 0.14);
+    --accent-border: rgba(56, 189, 248, 0.45);
+    --social-bg: rgba(39, 57, 70, 0.5);
     --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+      rgba(0, 0, 0, 0.34) 0 18px 40px -18px, rgba(0, 0, 0, 0.24) 0 8px 22px -16px;
   }
 
   #social .button-icon {
@@ -53,7 +59,7 @@
 }
 
 #root {
-  width: 1126px;
+  width: min(1180px, 100%);
   max-width: 100%;
   margin: 0 auto;
   text-align: left;
@@ -76,7 +82,7 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 48px;
   letter-spacing: 0;
   margin: 0;
   @media (max-width: 1024px) {
